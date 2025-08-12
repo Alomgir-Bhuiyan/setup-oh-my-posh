@@ -15,7 +15,8 @@ copy_configs() {
   rm -rf "$HOME/.config/fish"
 
   log "Copying fish config..."
-  cp -r ./.config/fish "$HOME/.config/"
+  mkdir $HOME/.config/fish
+  cp -r ./.config/fish "$HOME/.config/fish/"
 
   log "Removing existing poshthemes..."
   rm -rf "$HOME/.poshthemes"
