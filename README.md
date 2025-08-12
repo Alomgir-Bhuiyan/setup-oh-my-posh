@@ -7,6 +7,16 @@ sudo apt install zsh -y
 ```bash
 sudo pacman -S zsh
 ```
+#### If you want zsh to be default you can use `sudo chsh -s /bin/zsh` but if you want to use fish with it ignore this step
+_Install fish by_
+```bash
+sudo apt install fish -y
+```
+_or_
+```bash
+sudo pacman -S fish
+```
+
 
 ## How to install oh-my-posh shell in your linux ?
 ```bash
@@ -23,16 +33,6 @@ chmod +x setup.sh &&
 it will defaultly install **tiwahu** theme
 if you want to install something else, you can find
 the theme list in `~/.poshthemes/` 
-
-#### If you want zsh to be default you can use `sudo chsh -s /bin/zsh` but if you want to use fish with it ignore this step
-_Install fish by_
-```bash
-sudo apt install fish -y
-```
-_or_
-```bash
-sudo pacman -S fish
-```
 
 _if you want to use other theme than tiwahu, edit ~/.config/fish/config.fish_
 ```bash
