@@ -10,3 +10,4 @@ cp -r ./.zshrc $HOME/
 DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$DIR/.."
 rm -rf "$DIR"
+cd
