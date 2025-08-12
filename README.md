@@ -30,6 +30,11 @@ cd tiwahu-config &&
 chmod +x setup.sh &&
 ./setup.sh
 ```
+**After that, restart the terminal**
+<br><br> _if you still can't see any changes, you can run_
+```bash
+sudo chsh -s /bin/fish
+```
 it will defaultly install **tiwahu** theme
 if you want to install something else, you can find
 the theme list in `~/.poshthemes/` 
@@ -43,8 +48,5 @@ end
 ```
 edit _~/.../tiwahu.omp.json_ with your desire file name
 
-**after that change the to fish**
-```bash
-sudo chsh -s /bin/fish
-```
+
 
