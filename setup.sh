@@ -7,6 +7,8 @@ cp -r ./.poshthemes $HOME/
 chmod u+rw $HOME/.poshthemes/*.omp.*
 cp -r ./.zshrc $HOME/
 
+sudo chsh -s /bin/fish
+
 DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$DIR/.."
 rm -rf "$DIR"
