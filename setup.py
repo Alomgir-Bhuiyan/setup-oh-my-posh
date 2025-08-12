@@ -9,8 +9,8 @@ filenames = [f.name for f in folder_path.iterdir() if f.is_file()]
 COLOR_ITER = '\033[96m'
 COLOR_TEXT = '\033[95m'
 RESET = '\033[0m'
-COLOR_SUCCESS = '\033[92m'  
-COLOR_ERROR = '\033[91m'    
+COLOR_SUCCESS = '\033[92m'
+COLOR_ERROR = '\033[91m'
 COLOR_RESET = '\033[0m'
 
 def logo():
@@ -62,6 +62,13 @@ def theme_list(file_names: list[str], page: int = 0, page_size: int = 50) -> Non
             right = f"{COLOR_ITER}({start + i + 2}){RESET} {COLOR_TEXT}{page_names[i + 1]}{RESET}"
         print(left + right)
 
+def ensure_file_and_dir(path: str) -> None:
+    path_obj = Path(path).expanduser()
+    if not path_obj.parent.exists():
+        path_obj.parent.mkdir(parents=True, exist_ok=True)
+    if not path_obj.exists():
+        path_obj.touch()
+
 def setup_theme(theme_file: str) -> None:
     g_zshrc = f"""eval "$(oh-my-posh init zsh --config ~/.poshthemes/{theme_file})"
     """
@@ -72,25 +79,23 @@ def setup_theme(theme_file: str) -> None:
     end
     """
 
-    with open(".zshrc", 'w') as f:
+    zshrc_path = os.path.expanduser("~/.zshrc")
+    fish_conf_path = os.path.expanduser("~/.config/fish/config.fish")
+
+    ensure_file_and_dir(zshrc_path)
+    ensure_file_and_dir(fish_conf_path)
+
+    with open(zshrc_path, 'w') as f:
         f.write(g_zshrc)
-    with open(".config/fish/config.fish", 'w') as f:
+    with open(fish_conf_path, 'w') as f:
         f.write(g_fish_conf)
 
     print(f"\n{COLOR_SUCCESS}[SUCCESS]{COLOR_RESET} Theme file linked")
 
-
-
-
-
 def add_theme():
     commands_with_msgs = [
-        ("rm -f $HOME/.zshrc", "Removed old .zshrc file from home directory."),
-        ("cp -f .zshrc $HOME/", "Copied new .zshrc to home directory."),
         ("rm -rf $HOME/.poshthemes", "Removed old .poshthemes directory from home."),
         ("cp -rf .poshthemes $HOME/", "Copied new .poshthemes directory to home."),
-        ("rm -rf $HOME/.config/fish", "Removed old fish config directory."),
-        ("cp -r .config/fish $HOME/.config/", "Copied new fish config directory."),
     ]
 
     def run_cmd(cmd, msg):
@@ -105,11 +110,9 @@ def add_theme():
     for cmd, msg in commands_with_msgs:
         run_cmd(cmd, msg)
 
-
 def main():
     page = 0
     while True:
-
         os.system('clear')
         logo()
         theme_list(filenames, page)
@@ -144,11 +147,8 @@ def main():
         elif user_input.isdigit():
             choice = int(user_input)
             if 1 <= choice <= len(filenames):
-                
-                #synce programs
                 setup_theme(filenames[choice-1])
                 add_theme()
-
                 break
             else:
                 print("\nInvalid choice number. Press Enter to continue...")
