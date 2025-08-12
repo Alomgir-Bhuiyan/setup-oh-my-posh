@@ -16,6 +16,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 ## After installing oh-my-posh
 ```bash
 git clone https://github.com/Alomgir-Bhuiyan/tiwahu-config &&
+cd tiwahu-config &&
 chmod +x setup.sh &&
 ./setup.sh
 ```
