@@ -64,7 +64,7 @@ cleanup_and_exit() {
 main() {
   copy_configs
   change_shell
-  cleanup_and_exit
+  #cleanup_and_exit
 }
 
 main "$@"
