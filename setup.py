@@ -102,7 +102,6 @@ def add_theme():
         run_cmd(cmd, msg)
 
 def change_shell_to_fish():
-    s = shell_name()
     fish_path = shutil.which("fish")
     if not fish_path:
         print(f"{COLOR_ERROR}[ERROR]{COLOR_RESET} Fish shell not found. Please install fish first.")
