@@ -83,13 +83,6 @@ def setup_theme(theme_file: str) -> None:
         print(f"{COLOR_SUCCESS}[SUCCESS]{COLOR_RESET} New fish config file added")
     print(f"\n{COLOR_SUCCESS}[SUCCESS]{COLOR_RESET} Theme file linked")
 
-def shell_name() -> str:
-
-    shell_path = os.environ.get("SHELL")
-    return os.path.basename(shell_path)  
-
-
-
 def add_theme():
 
     commands_with_msgs = [
@@ -128,8 +121,8 @@ def change_shell_to_fish():
         except subprocess.CalledProcessError:
             print(f"{COLOR_ERROR}[ERROR]{COLOR_RESET} Could not change shell automatically. Please run: chsh -s /bin/fish")
 
-        print(f"{COLOR_ERROR}Killing '{s}'{COLOR_RESET}")
-        os.system(f"killall -15 {s}")
+        print(f"{COLOR_ERROR}Killing Shell Processes{COLOR_RESET}")
+        os.system(f"killall -15 bash zsh fish")
 
 
 def main():
